@@ -214,8 +214,8 @@ steps:
 
         cancel_current_build(){
           echo "Cancelling build ${CIRCLE_BUILD_NUM}"
-          cancel_api_url_template="${CIRCLECI_BASE_URL}/api/v1.1/project/${VCS_TYPE}/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BUILD_NUM}/cancel?circle-token=${<< parameters.circleci-api-key >>}"
-          curl -s -X POST $cancel_api_url_template > /dev/null
+          cancel_api_url_template="${CIRCLECI_BASE_URL}/api/v1.1/project/${VCS_TYPE}/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BUILD_NUM}/cancel"
+          curl -s -X POST -H "Circle-Token:${<< parameters.circleci-api-key >>}" $cancel_api_url_template > /dev/null
         }
 
 
